@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history, needed for secret scanning
+
+      # Add your language setup here, for example:
+      # - uses: actions/setup-python@v5
+      #   with:
+      #     python-version: "3.12"
+      # - uses: actions/setup-node@v4
+      #   with:
+      #     node-version: 22
+
+      - name: Set up project
+        run: make setup
+
+      - name: Lint
+        run: make lint
+
+      - name: Test
+        run: make test
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Scan for committed secrets
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

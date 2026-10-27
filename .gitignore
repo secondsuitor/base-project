@@ -1,0 +1,52 @@
+# --- Secrets & local config (never commit) ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# --- OS junk ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# --- Editors / IDEs ---
+.idea/
+*.swp
+*.swo
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+
+# --- Logs & temp ---
+*.log
+logs/
+tmp/
+.cache/
+
+# --- Build output & coverage ---
+dist/
+build/
+out/
+coverage/
+htmlcov/
+.coverage
+
+# --- Python ---
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# --- Node ---
+node_modules/
+npm-debug.log*
+
+# --- Other languages: add your own below, or start from
+# --- https://github.com/github/gitignore
